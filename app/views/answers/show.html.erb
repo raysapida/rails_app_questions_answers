@@ -1,0 +1,6 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @answer.description %></h1>
+
+<%= link_to 'Edit Answer', edit_question_answer_path(@question, @answer) %> |
+<%= link_to 'Back to Question', questions_path(@question) %>

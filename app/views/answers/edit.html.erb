@@ -1,0 +1,7 @@
+<h1>Editing answer</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', question_answer_path(@question, @answer) %> |
+<%= link_to 'Edit Answer', edit_question_answer_path(@question, @answer) %> |
+<%= link_to 'Back to Question', questions_path(@question) %>
