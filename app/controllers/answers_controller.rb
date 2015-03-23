@@ -25,9 +25,11 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to @question, notice: 'Answer was successfully created.' }
+        flash.now[:success] = 'Answer was successfully created.'
+        format.html { redirect_to @question }
         format.json { render :show, status: :created, location: @answer }
       else
+        flash.now[:danger] = "Your answer could not be saved"
         format.html { render :new }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
@@ -37,9 +39,11 @@ class AnswersController < ApplicationController
   def update
     respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
+        flash.now[:success] = 'Answer was successfully updated.'
+        format.html { redirect_to @answer }
         format.json { render :show, status: :ok, location: @answer }
       else
+        flash.now[:danger] = "Your answer could not be updated"
         format.html { render :edit }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
@@ -49,7 +53,8 @@ class AnswersController < ApplicationController
   def destroy
     @answer.destroy
     respond_to do |format|
-      format.html { redirect_to answers_url, notice: 'Answer was successfully destroyed.' }
+        flash.now[:success] = 'Answer was successfully destroyed.'
+      format.html { redirect_to answers_url }
       format.json { head :no_content }
     end
   end
